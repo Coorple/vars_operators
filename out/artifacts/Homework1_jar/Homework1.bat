@@ -1,0 +1,1 @@
+java -jar D:\testing\testing2\Homework1\out\artifacts\Homework1_jar\Homework1.jar
