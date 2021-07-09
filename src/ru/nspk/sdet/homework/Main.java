@@ -68,40 +68,36 @@ public class Main {
 
     public static boolean change(String[] argus) {
         for (String arg : argus) {
+            int tempRow = row;
+            int tempColumn = column;
             if ("D".equals(arg)) {
-                if (checkMount(row + 1, column)) {
-                    break;
-                }
-                row += 1;
-                if (row > MAP_SIZE - 1) {
-                    row -= MAP_SIZE;
-                }
+                tempRow = row + 1;
             } else if ("U".equals(arg)) {
-                if (checkMount(row - 1, column)) {
-                    break;
-                }
-                row -= 1;
-                if (row < 0) {
-                    row += MAP_SIZE;
-                }
+                tempRow = row - 1;
             } else if ("R".equals(arg)) {
-                if (checkMount(row, column + 1)) {
-                    break;
-                }
-                column += 1;
-                if (column > MAP_SIZE - 1) {
-                    column -= MAP_SIZE;
-                }
+                tempColumn = column + 1;
             } else if ("L".equals(arg)) {
-                if (checkMount(row, column - 1)) {
-                    break;
-                }
-                column -= 1;
-                if (column < 0) {
-                    column += MAP_SIZE;
-                }
+                tempColumn = column - 1;
             } else if ("exit".equals(arg)) {
                 return true;
+            }
+            if (checkMount(tempRow, tempColumn)) {
+                break;
+            } else {
+                row = tempRow;
+                column = tempColumn;
+            }
+            if (row > MAP_SIZE - 1) {
+                row -= MAP_SIZE;
+            }
+            if (row < 0) {
+                row += MAP_SIZE;
+            }
+            if (column > MAP_SIZE - 1) {
+                column -= MAP_SIZE;
+            }
+            if (column < 0) {
+                column += MAP_SIZE;
             }
         }
         return false;
