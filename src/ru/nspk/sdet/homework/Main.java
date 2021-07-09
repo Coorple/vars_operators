@@ -21,8 +21,7 @@ public class Main {
 	    while (true) {
             draw();
             String[] command = next();
-            int exit = change(command);
-            if (exit == 0) {
+            if (change(command)) {
                 break;
             }
         }
@@ -67,7 +66,7 @@ public class Main {
         return false;
     }
 
-    public static int change(String[] argus) {
+    public static boolean change(String[] argus) {
         for (String arg : argus) {
             if ("D".equals(arg)) {
                 if (checkMount(row + 1, column)) {
@@ -102,10 +101,10 @@ public class Main {
                     column += MAP_SIZE;
                 }
             } else if ("exit".equals(arg)) {
-                return 0;
+                return true;
             }
         }
-        return 1;
+        return false;
     }
 
     public static void instr() {
